@@ -10,7 +10,7 @@ version:
 
 commit:
 	git add .
-	git cim "bump version to ${VERSION}"
+	git commit -m "bump version to ${VERSION}"
 
 upload: version
 	python setup.py sdist upload
