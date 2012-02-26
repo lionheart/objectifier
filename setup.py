@@ -11,7 +11,7 @@ except ImportError:
 setup(
     name='objectifier',
     version=objectifier.__version__,
-    url='http://elmcitylabs.com',
+    url='http://git.elmcitylabs.com/objectifier',
     license='Apache 2.0',
     description='Turns dictionaries into Python objects.',
     author='Dan Loewenherz',
