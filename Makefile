@@ -6,7 +6,7 @@ init:
 
 version:
 	echo "Packaging version ${VERSION}"
-	sed -i '' 's/\(__version__ = \).*/\1${VERSION}/g' objectifier/__init__.py
+	sed -i '' 's/\(__version__ = \).*/\1"${VERSION}"/g' objectifier/__init__.py
 
 commit:
 	git add .
