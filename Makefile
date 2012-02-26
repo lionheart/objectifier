@@ -13,7 +13,7 @@ commit:
 	git cim "bump version to ${VERSION}"
 
 upload: version
-	python setup.py sdist
+	python setup.py sdist upload
 	s3cmd put dist/objectifier-${VERSION}.tar.gz s3://packages.elmcitylabs.com/ -P
 
 pyc:
