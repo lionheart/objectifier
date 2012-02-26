@@ -1,4 +1,4 @@
-all: version commit upload
+all: pyc version commit upload
 
 init:
 	python setup.py develop
