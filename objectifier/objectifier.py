@@ -1,6 +1,3 @@
-from redis import StrictRedis
-import pickle
-
 class Objectifier(object):
     """
     Object that takes an object as a parameter and returns an object that makes
