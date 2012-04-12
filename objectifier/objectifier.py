@@ -13,9 +13,9 @@ class Objectifier(object):
     Isabelle, Dante
     """
     def __init__(self, response_data):
-        if type(response_data) in [dict, list]:
+        if type(response_data) == dict:
             self.response_data = response_data
-        elif type(response_data) == tuple:
+        elif type(response_data) in [list, tuple]:
             try:
                 self.response_data = dict(response_data)
             except ValueError:
