@@ -12,10 +12,10 @@ setup(
     name='objectifier',
     version=objectifier.__version__,
     url='http://git.elmcitylabs.com/objectifier',
-    license='Apache 2.0',
+    license=objectifier.__license__,
     description='Turns dictionaries into Python objects.',
-    author='Dan Loewenherz',
-    author_email='dan@elmcitylabs.com',
+    author=objectifier.__author__,
+    author_email=objectifier.__email__,
     packages=['objectifier'],
     package_data={'': ['LICENSE']},
 )
