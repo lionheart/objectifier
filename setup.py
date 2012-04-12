@@ -17,6 +17,6 @@ setup(
     author=objectifier.__author__,
     author_email=objectifier.__email__,
     packages=['objectifier'],
-    package_data={'': ['LICENSE']},
+    package_data={'': ['LICENSE', 'README']},
 )
 
