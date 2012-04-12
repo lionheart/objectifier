@@ -22,6 +22,11 @@ class Objectifier(object):
             return Objectifier(response_data)
         return response_data
 
+    def __dir__(self):
+        if type(self.response_data) == dict:
+            return self.response_data.keys()
+        return []
+
     def __repr__(self):
         if type(self.response_data) == dict:
             return "<Objectifier#dict %s>" % " ".join(["%s=%s" % (k, type(v).__name__) for k, v in self.response_data.iteritems()])
