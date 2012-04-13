@@ -1,8 +1,8 @@
 Objectifier
 ===========
 
-Objectifier is a simple library that helps make traversing dictionaries, lists,
-and other Python objects a lot easier.
+Objectifier is a tool that makes traversing dictionaries, lists, and other
+Python objects a lot easier.
 
 If you have an bug to report or a feature request, add it to our `issue tracker
 <https://github.com/elmcitylabs/objectifier/issues>`_.
@@ -12,12 +12,13 @@ If you have an bug to report or a feature request, add it to our `issue tracker
 Installation
 ------------
 
-Objectifier is on PyPi. You can install it through `pip`_ or easy_install,
+Objectifier is on `PyPi`_. You can install it through `pip`_ or easy_install,
 whichever you prefer.::
 
     $ pip install objectifier
 
 .. _pip: http://www.pip-installer.org/en/latest/
+.. _PyPi: http://pypi.python.org
 
 .. _configuration:
 
@@ -69,10 +70,11 @@ difference is that you can access attributes with dot notation.
     >>> tweet = Objectifier(response.read())
     >>> ", ".join(user.screen_name for user in tweet.entities.user_mentions)
 
-``Objectifier`` will wrap any Python string, unicode string, dictionary, list,
-or tuple. If it's JSON text, it will attempt to parse it before giving up and
-leaving it as text only. This allows you to do things like the above, without
-having to use something like ``json.load`` with the response data.
+The ``Objectifier`` class will wrap any Python string, unicode string,
+dictionary, list, or tuple. If the input is a JSON string, Objectifier will
+attempt to parse it before leaving it as text only. This allows you to do
+things like the above, without having to use ``json.load`` for the response
+data.
 
 You can test that an attribute exists (as you could with a dictionary).
 
@@ -84,8 +86,8 @@ And get the number of items in an object that defines ``__len__``.
     >>> len(tweet.entities.user_mentions)
     3
 
-Now, the above things are nice, but not game changers. We think Objectifier's
-real strength is in the Python console.
+The above things are nice, but not game changers. Objectifier's real strength
+shines in the Python console.
 
     >>> tweet
     <Objectifier#dict user=dict favorited=bool entities=dict contributors=NoneType truncated=bool text=unicode created_at=unicode retweeted=bool in_reply_to_status_id_str=NoneType coordinates=NoneType in_reply_to_user_id_str=unicode source=unicode in_reply_to_status_id=NoneType in_reply_to_screen_name=unicode id_str=unicode place=NoneType retweet_count=int geo=NoneType id=int possibly_sensitive=bool in_reply_to_user_id=int>
@@ -98,7 +100,7 @@ of the original object get all the benefits of pretty display. For example::
     >>> tweet.user.profile_image_url
     u'http://a0.twimg.com/profile_images/1380912173/Screen_shot_2011-06-03_at_7.35.36_PM_normal.png'
 
-Also, if you're inspecting a list, Objectifier will tell you the number of elements.
+If you're inspecting a list, Objectifier will tell you the number of elements.
 
     >>> tweet.entities.user_mentions
     <Objectifier#list elements:3>
