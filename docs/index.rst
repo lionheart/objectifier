@@ -13,7 +13,7 @@ Installation
 ------------
 
 Objectifier is on `PyPi`_. You can install it through `pip`_ or easy_install,
-whichever you prefer.::
+whichever you prefer. ::
 
     $ pip install objectifier
 
@@ -59,13 +59,13 @@ traverse.
 
 
 After parsing the response into a Python dictionary using the :mod:`json`
-module, this is how we might display all the user mentions in a list.
+module, this is how we might display all the user mentions in a list. ::
 
     >>> tweet = json.loads(response.read())
     >>> ", ".join(user['screen_name'] for user in tweet['entities']['user_mentions'])
 
 This isn't too different than what you'd do with Objectifier. The main
-difference is that you can access attributes with dot notation.
+difference is that you can access attributes with dot notation. ::
 
     >>> tweet = Objectifier(response.read())
     >>> ", ".join(user.screen_name for user in tweet.entities.user_mentions)
@@ -76,37 +76,37 @@ attempt to parse it before leaving it as text only. This allows you to do
 things like the above, without having to use ``json.load`` for the response
 data.
 
-You can test that an attribute exists (as you could with a dictionary).
+You can test that an attribute exists (as you could with a dictionary). ::
 
     >>> 'user' in tweet
     True
 
-And get the number of items in an object that defines ``__len__``.
+And get the number of items in an object that defines ``__len__``. ::
 
     >>> len(tweet.entities.user_mentions)
     3
 
 The above things are nice, but not game changers. Objectifier's real strength
-shines in the Python console.
+shines in the Python console. ::
 
     >>> tweet
     <Objectifier#dict user=dict favorited=bool entities=dict contributors=NoneType truncated=bool text=unicode created_at=unicode retweeted=bool in_reply_to_status_id_str=NoneType coordinates=NoneType in_reply_to_user_id_str=unicode source=unicode in_reply_to_status_id=NoneType in_reply_to_screen_name=unicode id_str=unicode place=NoneType retweet_count=int geo=NoneType id=int possibly_sensitive=bool in_reply_to_user_id=int>
 
 Everything in the object is recursively wrapped with Objectifier, so attributes
-of the original object get all the benefits of pretty display. For example::
+of the original object get all the benefits of pretty display. For example ::
 
     >>> tweet.user
     <Objectifier#dict follow_request_sent=NoneType profile_use_background_image=bool default_profile_image=bool id=int verified=bool profile_image_url_https=unicode profile_sidebar_fill_color=unicode profile_text_color=unicode followers_count=int profile_sidebar_border_color=unicode id_str=unicode profile_background_color=unicode listed_count=int profile_background_image_url_https=unicode utc_offset=NoneType statuses_count=int description=unicode friends_count=int location=unicode profile_link_color=unicode profile_image_url=unicode following=NoneType show_all_inline_media=bool geo_enabled=bool profile_background_image_url=unicode screen_name=unicode lang=unicode profile_background_tile=bool favourites_count=int name=unicode notifications=NoneType url=unicode created_at=unicode contributors_enabled=bool time_zone=NoneType protected=bool default_profile=bool is_translator=bool>
     >>> tweet.user.profile_image_url
     u'http://a0.twimg.com/profile_images/1380912173/Screen_shot_2011-06-03_at_7.35.36_PM_normal.png'
 
-If you're inspecting a list, Objectifier will tell you the number of elements.
+If you're inspecting a list, Objectifier will tell you the number of elements. ::
 
     >>> tweet.entities.user_mentions
     <Objectifier#list elements:3>
 
 And finally, if you use IPython, pressing tab will give you a nice rundown of
-all the attributes in the object.
+all the attributes in the object. ::
 
     >>> tweet.<tab>
     ...contributors               ...id                         ...in_reply_to_user_id_str    ...source
