@@ -58,7 +58,7 @@ traverse.
     <div class='highlight-js'><div class='highlight'><pre id='tweet' style='display:none'></pre></div></div>
 
 
-After parsing the response into a Python dictionary using the :mod:`json`
+After parsing the response into a Python dictionary using the ``json``
 module, this is how we might display all the user mentions in a list. ::
 
     >>> tweet = json.loads(response.read())
