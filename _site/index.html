@@ -1,48 +1,66 @@
-<!DOCTYPE html>
-<html>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Objectifier: Objectify your Python objects." />
-    <link rel="stylesheet" type="text/css" media="screen" href="css/stylesheet.css">
-    <title>Objectifier</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Objectifier &mdash; Objectifier 1.1.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.1.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Objectifier 1.1.2 documentation" href="#" /> 
   </head>
-
   <body>
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-      <header class="inner">
-      <a id="forkme_banner" href="https://github.com/elmcitylabs/objectifier">Fork Me on GitHub</a>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="#">Objectifier 1.1.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
 
-      <h1 id="project_title">Objectifier</h1>
-      <h2 id="project_tagline">Objectify your Python objects.</h2>
-
-      <section id="downloads">
-      <a class="zip_download_link" href="https://github.com/elmcitylabs/objectifier/zipball/master">Download this project as a .zip file</a>
-      <a class="tar_download_link" href="https://github.com/elmcitylabs/objectifier/tarball/master">Download this project as a tar.gz file</a>
-      </section>
-      </header>
-    </div>
-
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-      <p>Objectifier is a tool that makes traversing dictionaries, lists, and other
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="objectifier">
+<h1>Objectifier<a class="headerlink" href="#objectifier" title="Permalink to this headline">¶</a></h1>
+<p>Objectifier is a tool that makes traversing dictionaries, lists, and other
 Python objects a lot easier.</p>
 <p>If you have an bug to report or a feature request, add it to our <a class="reference external" href="https://github.com/elmcitylabs/objectifier/issues">issue tracker</a>.</p>
-<div class="section" id="id1">
-<span id="installation"></span><h2>Installation</h2>
+<div class="section" id="installation">
+<span id="id1"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>Objectifier is on <a class="reference external" href="http://pypi.python.org">PyPi</a>. You can install it through <a class="reference external" href="http://www.pip-installer.org/en/latest/">pip</a> or easy_install,
 whichever you prefer.</p>
-<pre class="literal-block">
-$ pip install objectifier
-</pre>
+<div class="highlight-python"><pre>$ pip install objectifier</pre>
+</div>
 </div>
 <div class="section" id="usage">
-<span id="configuration"></span><h2>Usage</h2>
-<p>Objectifier takes any Python object--a string, dictionary, list, tuple,
-etc--and turns it into an object with some pretty cool properties.</p>
-<p>The best way to explain is through some examples. Let's say you are interacting
-with the Twitter API and have <a class="reference external" href="javascript:toggleTweet();">a JSON tweet</a> that you'd like to manipulate or
+<span id="configuration"></span><h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>Objectifier takes any Python object&#8211;a string, dictionary, list, tuple,
+etc&#8211;and turns it into an object with some pretty cool properties.</p>
+<p>The best way to explain is through some examples. Let&#8217;s say you are interacting
+with the Twitter API and have <a class="reference external" href="javascript:toggleTweet();">a JSON tweet</a> that you&#8217;d like to manipulate or
 traverse.</p>
 <script type='text/javascript'>
   $(function() {
@@ -63,94 +81,126 @@ traverse.</p>
     }
   }
 </script>
-<div class='highlight-js'><div class='highlight'><pre id='tweet' style='display:none'></pre></div></div><p>After parsing the response into a Python dictionary using the <tt class="docutils literal">json</tt>
+<div class='highlight-js'><div class='highlight'><pre id='tweet' style='display:none'></pre></div></div><p>After parsing the response into a Python dictionary using the <tt class="docutils literal"><span class="pre">json</span></tt>
 module, this is how we might display all the user mentions in a list.</p>
-<pre class="literal-block">
-&gt;&gt;&gt; tweet = json.loads(response.read())
-&gt;&gt;&gt; &quot;, &quot;.join(user['screen_name'] for user in tweet['entities']['user_mentions'])
-</pre>
-<p>This isn't too different than what you'd do with Objectifier. The main
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tweet</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">user</span><span class="p">[</span><span class="s">&#39;screen_name&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">tweet</span><span class="p">[</span><span class="s">&#39;entities&#39;</span><span class="p">][</span><span class="s">&#39;user_mentions&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>This isn&#8217;t too different than what you&#8217;d do with Objectifier. The main
 difference is that you can access attributes with dot notation.</p>
-<pre class="literal-block">
-&gt;&gt;&gt; tweet = Objectifier(response.read())
-&gt;&gt;&gt; &quot;, &quot;.join(user.screen_name for user in tweet.entities.user_mentions)
-</pre>
-<p>The <tt class="docutils literal">Objectifier</tt> class will wrap any Python string, unicode string,
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tweet</span> <span class="o">=</span> <span class="n">Objectifier</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">screen_name</span> <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">tweet</span><span class="o">.</span><span class="n">entities</span><span class="o">.</span><span class="n">user_mentions</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">Objectifier</span></tt> class will wrap any Python string, unicode string,
 dictionary, list, or tuple. If the input is a JSON string, Objectifier will
 attempt to parse it before leaving it as text only. This allows you to do
-things like the above, without having to use <tt class="docutils literal">json.load</tt> for the response
+things like the above, without having to use <tt class="docutils literal"><span class="pre">json.load</span></tt> for the response
 data.</p>
 <p>You can test that an attribute exists (as you could with a dictionary).</p>
-<pre class="literal-block">
-&gt;&gt;&gt; 'user' in tweet
-True
-</pre>
-<p>And get the number of items in an object that defines <tt class="docutils literal">__len__</tt>.</p>
-<pre class="literal-block">
-&gt;&gt;&gt; len(tweet.entities.user_mentions)
-3
-</pre>
-<p>The above things are nice, but not game changers. Objectifier's real strength
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="s">&#39;user&#39;</span> <span class="ow">in</span> <span class="n">tweet</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>And get the number of items in an object that defines <tt class="docutils literal"><span class="pre">__len__</span></tt>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">tweet</span><span class="o">.</span><span class="n">entities</span><span class="o">.</span><span class="n">user_mentions</span><span class="p">)</span>
+<span class="go">3</span>
+</pre></div>
+</div>
+<p>The above things are nice, but not game changers. Objectifier&#8217;s real strength
 shines in the Python console.</p>
-<pre class="literal-block">
-&gt;&gt;&gt; tweet
-&lt;Objectifier#dict user=dict favorited=bool entities=dict contributors=NoneType truncated=bool text=unicode created_at=unicode retweeted=bool in_reply_to_status_id_str=NoneType coordinates=NoneType in_reply_to_user_id_str=unicode source=unicode in_reply_to_status_id=NoneType in_reply_to_screen_name=unicode id_str=unicode place=NoneType retweet_count=int geo=NoneType id=int possibly_sensitive=bool in_reply_to_user_id=int&gt;
-</pre>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tweet</span>
+<span class="go">&lt;Objectifier#dict user=dict favorited=bool entities=dict contributors=NoneType truncated=bool text=unicode created_at=unicode retweeted=bool in_reply_to_status_id_str=NoneType coordinates=NoneType in_reply_to_user_id_str=unicode source=unicode in_reply_to_status_id=NoneType in_reply_to_screen_name=unicode id_str=unicode place=NoneType retweet_count=int geo=NoneType id=int possibly_sensitive=bool in_reply_to_user_id=int&gt;</span>
+</pre></div>
+</div>
 <p>Everything in the object is recursively wrapped with Objectifier, so attributes
 of the original object get all the benefits of pretty display. For example</p>
-<pre class="literal-block">
-&gt;&gt;&gt; tweet.user
-&lt;Objectifier#dict follow_request_sent=NoneType profile_use_background_image=bool default_profile_image=bool id=int verified=bool profile_image_url_https=unicode profile_sidebar_fill_color=unicode profile_text_color=unicode followers_count=int profile_sidebar_border_color=unicode id_str=unicode profile_background_color=unicode listed_count=int profile_background_image_url_https=unicode utc_offset=NoneType statuses_count=int description=unicode friends_count=int location=unicode profile_link_color=unicode profile_image_url=unicode following=NoneType show_all_inline_media=bool geo_enabled=bool profile_background_image_url=unicode screen_name=unicode lang=unicode profile_background_tile=bool favourites_count=int name=unicode notifications=NoneType url=unicode created_at=unicode contributors_enabled=bool time_zone=NoneType protected=bool default_profile=bool is_translator=bool&gt;
-&gt;&gt;&gt; tweet.user.profile_image_url
-u'http://a0.twimg.com/profile_images/1380912173/Screen_shot_2011-06-03_at_7.35.36_PM_normal.png'
-</pre>
-<p>If you're inspecting a list, Objectifier will tell you the number of elements.</p>
-<pre class="literal-block">
-&gt;&gt;&gt; tweet.entities.user_mentions
-&lt;Objectifier#list elements:3&gt;
-</pre>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tweet</span><span class="o">.</span><span class="n">user</span>
+<span class="go">&lt;Objectifier#dict follow_request_sent=NoneType profile_use_background_image=bool default_profile_image=bool id=int verified=bool profile_image_url_https=unicode profile_sidebar_fill_color=unicode profile_text_color=unicode followers_count=int profile_sidebar_border_color=unicode id_str=unicode profile_background_color=unicode listed_count=int profile_background_image_url_https=unicode utc_offset=NoneType statuses_count=int description=unicode friends_count=int location=unicode profile_link_color=unicode profile_image_url=unicode following=NoneType show_all_inline_media=bool geo_enabled=bool profile_background_image_url=unicode screen_name=unicode lang=unicode profile_background_tile=bool favourites_count=int name=unicode notifications=NoneType url=unicode created_at=unicode contributors_enabled=bool time_zone=NoneType protected=bool default_profile=bool is_translator=bool&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">profile_image_url</span>
+<span class="go">u&#39;http://a0.twimg.com/profile_images/1380912173/Screen_shot_2011-06-03_at_7.35.36_PM_normal.png&#39;</span>
+</pre></div>
+</div>
+<p>If you&#8217;re inspecting a list, Objectifier will tell you the number of elements.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tweet</span><span class="o">.</span><span class="n">entities</span><span class="o">.</span><span class="n">user_mentions</span>
+<span class="go">&lt;Objectifier#list elements:3&gt;</span>
+</pre></div>
+</div>
 <p>And finally, if you use IPython, pressing tab will give you a nice rundown of
 all the attributes in the object.</p>
-<pre class="literal-block">
-&gt;&gt;&gt; tweet.&lt;tab&gt;
-...contributors               ...id                         ...in_reply_to_user_id_str    ...source
-...coordinates                ...id_str                     ...objectify_if_needed        ...text
-...created_at                 ...in_reply_to_screen_name    ...place                      ...truncated
-...entities                   ...in_reply_to_status_id      ...possibly_sensitive         ...user
-...favorited                  ...in_reply_to_status_id_str  ...retweet_count
-...geo                        ...in_reply_to_user_id        ...retweeted
-</pre>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tweet</span><span class="o">.&lt;</span><span class="n">tab</span><span class="o">&gt;</span>
+<span class="go">...contributors               ...id                         ...in_reply_to_user_id_str    ...source</span>
+<span class="go">...coordinates                ...id_str                     ...objectify_if_needed        ...text</span>
+<span class="go">...created_at                 ...in_reply_to_screen_name    ...place                      ...truncated</span>
+<span class="go">...entities                   ...in_reply_to_status_id      ...possibly_sensitive         ...user</span>
+<span class="go">...favorited                  ...in_reply_to_status_id_str  ...retweet_count</span>
+<span class="go">...geo                        ...in_reply_to_user_id        ...retweeted</span>
+</pre></div>
+</div>
 <p>There are probably a lot of other things Objectifier could do too, so if you have an idea, fork the code on <a class="reference external" href="https://github.com/elmcitylabs/objectifier">Github</a> or <a class="reference external" href="https://bitbucket.org/elmcitylabs/objectifier">bitbucket</a> and send us a pull request!</p>
 </div>
 <div class="section" id="contributing-feedback-and-questions">
-<h2>Contributing, feedback, and questions</h2>
+<h2>Contributing, feedback, and questions<a class="headerlink" href="#contributing-feedback-and-questions" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Github: <a class="reference external" href="https://github.com/elmcitylabs">https://github.com/elmcitylabs</a></li>
 <li>Bitbucket: <a class="reference external" href="https://bitbucket.com/elmcitylabs">https://bitbucket.com/elmcitylabs</a></li>
-<li>Email: <a class="reference external" href="mailto:opensource&#64;elmcitylabs.com">opensource&#64;elmcitylabs.com</a>.</li>
+<li>Email: <a class="reference external" href="mailto:opensource&#37;&#52;&#48;elmcitylabs&#46;com">opensource<span>&#64;</span>elmcitylabs<span>&#46;</span>com</a>.</li>
 <li>Twitter: <a class="reference external" href="http://twitter.com/elmcitylabs">&#64;elmcitylabs</a></li>
 </ul>
 </div>
-      </section>
-    </div>
+</div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-      <p class="copyright">Objectifier maintained by <a href="https://github.com/elmcitylabs">elmcitylabs</a></p>
-      </footer>
-    </div>
 
-    <script type="text/javascript">
-      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-      </script>
-      <script type="text/javascript">
-        try {
-          var pageTracker = _gat._getTracker("UA-19178687-29");
-          pageTracker._trackPageview();
-        } catch(err) {}
-</script>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Objectifier</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#contributing-feedback-and-questions">Contributing, feedback, and questions</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="#">Objectifier 1.1.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Elm City Labs LLC.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
   </body>
 </html>
-
