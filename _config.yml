@@ -1,2 +1,3 @@
 source: ./source
+plugins: ./source/_plugins
 markdown: rdiscount
