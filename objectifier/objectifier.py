@@ -1,3 +1,5 @@
+import json
+
 class Objectifier(object):
     """
     Object that takes an object as a parameter and returns an object that makes
@@ -11,7 +13,18 @@ class Objectifier(object):
     Isabelle, Dante
     """
     def __init__(self, response_data):
-        self.response_data = response_data
+        if type(response_data) == dict:
+            self.response_data = response_data
+        elif type(response_data) in [list, tuple]:
+            try:
+                self.response_data = dict(response_data)
+            except ValueError:
+                self.response_data = response_data
+        else:
+            try:
+                self.response_data = json.loads(response_data)
+            except ValueError:
+                self.response_data = response_data
 
     @staticmethod
     def objectify_if_needed(response_data):
@@ -21,6 +34,11 @@ class Objectifier(object):
         if type(response_data) in [dict, list]:
             return Objectifier(response_data)
         return response_data
+
+    def __dir__(self):
+        if type(self.response_data) == dict:
+            return self.response_data.keys()
+        return []
 
     def __repr__(self):
         if type(self.response_data) == dict:
