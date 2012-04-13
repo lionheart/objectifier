@@ -69,6 +69,11 @@ difference is that you can access attributes with dot notation.
     >>> tweet = Objectifier(response.read())
     >>> ", ".join(user.screen_name for user in tweet.entities.user_mentions)
 
+``Objectifier`` will wrap any Python string, unicode string, dictionary, list,
+or tuple. If it's JSON text, it will attempt to parse it before giving up and
+leaving it as text only. This allows you to do things like the above, without
+having to use something like ``json.load`` with the response data.
+
 You can test that an attribute exists (as you could with a dictionary).
 
     >>> 'user' in tweet
