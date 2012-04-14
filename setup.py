@@ -18,7 +18,7 @@ setup(
     url='https://github.com/elmcitylabs/objectifier',
     license=metadata.__license__,
     long_description=read('README.rst'),
-    description='Turns dictionaries into Python objects.',
+    description='Objectifier makes it easy to inspect and traverse Python objects.',
     author=metadata.__author__,
     author_email=metadata.__email__,
     packages=['objectifier'],
