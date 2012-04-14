@@ -1,7 +1,7 @@
 #!/usr/bin/env/python
 # -*- coding: utf-8 -*-
 
-import objectifier
+from objectifier import metadata
 
 try:
     from setuptools import setup
@@ -10,12 +10,12 @@ except ImportError:
 
 setup(
     name='objectifier',
-    version=objectifier.__version__,
-    url='http://git.elmcitylabs.com/objectifier',
-    license=objectifier.__license__,
+    version=metadata.__version__,
+    url='https://github.com/elmcitylabs/objectifier',
+    license=metadata.__license__,
     description='Turns dictionaries into Python objects.',
-    author=objectifier.__author__,
-    author_email=objectifier.__email__,
+    author=metadata.__author__,
+    author_email=metadata.__email__,
     packages=['objectifier'],
     package_data={'': ['LICENSE', 'README']},
 )
