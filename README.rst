@@ -116,14 +116,16 @@ all the attributes in the object. ::
     ...favorited                  ...in_reply_to_status_id_str  ...retweet_count
     ...geo                        ...in_reply_to_user_id        ...retweeted
 
-There are probably a lot of other things Objectifier could do too, so if you have an idea, fork the code on `Github <https://github.com/elmcitylabs/objectifier>`_ or `bitbucket <https://bitbucket.org/elmcitylabs/objectifier>`_ and send us a pull request!
-
+There are probably a lot of other things Objectifier could do too, so if you
+have an idea, fork the code on `Github
+<https://github.com/elmcitylabs/objectifier>`_ or `bitbucket
+<https://bitbucket.org/elmcitylabs/objectifier>`_ and send us a pull request!
 
 Contributing, feedback, and questions
 -------------------------------------
 
-* Github: https://github.com/elmcitylabs
-* Bitbucket: https://bitbucket.com/elmcitylabs
+* Github: https://github.com/elmcitylabs/objectifier
+* Bitbucket: http://bitbucket.com/elmcitylabs/objectifier
 * Email: opensource@elmcitylabs.com.
 * Twitter: `@elmcitylabs <http://twitter.com/elmcitylabs>`_
 
