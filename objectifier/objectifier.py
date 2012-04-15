@@ -1,29 +1,15 @@
 import json
 
 class Objectifier(object):
-    """
-    Object that takes an object as a parameter and returns an object that makes
-    object manipulation and inspection very easy. Most effectively used with
-    dictionaries.
-
-    >>> data = Objectifier({'name': "Dan", 'cats': [{'name': "Isabelle"}, {'name': "Dante"}]})
-    >>> data.name
-    Dan
-    >>> ", ".join(map(lambda k: k.name, data.cats))
-    Isabelle, Dante
-    """
     def __init__(self, response_data):
-        if type(response_data) == dict:
-            self.response_data = response_data
-        elif type(response_data) in [list, tuple]:
-            try:
-                self.response_data = dict(response_data)
-            except ValueError:
-                self.response_data = response_data
-        else:
+        try:
+            self.response_data = dict(response_data)
+        except ValueError:
             try:
                 self.response_data = json.loads(response_data)
             except ValueError:
+                self.response_data = response_data
+            except TypeError:
                 self.response_data = response_data
 
     @staticmethod
@@ -31,27 +17,28 @@ class Objectifier(object):
         """
         Returns an objectifier object to wrap the provided response_data.
         """
-        if type(response_data) in [dict, list]:
+        if hasattr(response_data, 'pop'):
             return Objectifier(response_data)
         return response_data
 
     def __dir__(self):
-        if type(self.response_data) == dict:
+        try:
             return self.response_data.keys()
-        return []
+        except AttributeError:
+            return []
 
     def __repr__(self):
-        if type(self.response_data) == dict:
-            return "<Objectifier#dict %s>" % " ".join(["%s=%s" % (k, type(v).__name__) for k, v in self.response_data.iteritems()])
-        elif type(self.response_data) == list:
-            return "<Objectifier#list elements:%d>" % len(self.response_data)
-        else:
-            return self.response_data
+        try:
+            return "<Objectifier#dict {}>".format(" ".join(["%s=%s" % (k, type(v).__name__)
+                for k, v in self.response_data.iteritems()]))
+        except AttributeError:
+            try:
+                return "<Objectifier#list elements:{}>".format(len(self.response_data))
+            except TypeError:
+                return self.response_data
 
     def __contains__(self, k):
-        if type(self.response_data) in [dict, list]:
-            return k in self.response_data
-        return False
+        return k in self.response_data
 
     def __len__(self):
         return len(self.response_data)
@@ -60,21 +47,21 @@ class Objectifier(object):
         """
         Provides iteration functionality for the wrapped object.
         """
-        if type(self.response_data) == dict:
+        try:
             for k, v in self.response_data.iteritems():
                 yield (k, Objectifier.objectify_if_needed(v))
-        elif type(self.response_data) == list:
-            for i in self.response_data:
-                yield Objectifier.objectify_if_needed(i)
-        else:
-            raise StopIteration
+        except AttributeError:
+            try:
+                for i in self.response_data:
+                    yield Objectifier.objectify_if_needed(i)
+            except TypeError:
+                raise StopIteration
 
     def __getitem__(self, k):
-        if type(self.response_data) == dict and k in self.response_data:
+        try:
             return Objectifier.objectify_if_needed(self.response_data[k])
-        elif type(self.response_data) == list and k <= len(self.response_data):
-            return Objectifier.objectify_if_needed(self.response_data[k])
-        return None
+        except TypeError:
+            return None
 
     def __getattr__(self, k):
         if k in self.response_data:
