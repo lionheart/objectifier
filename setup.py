@@ -9,19 +9,19 @@ try:
 except ImportError:
     from distutils.core import setup
 
-def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
+with open("README.rst") as file:
+    long_description = file.read()
 
 setup(
     name='objectifier',
     version=metadata.__version__,
     url='https://github.com/elmcitylabs/objectifier',
     license=metadata.__license__,
-    long_description=read('README.rst'),
+    long_description=long_description,
     description='Objectifier makes it easy to inspect and traverse Python objects.',
     author=metadata.__author__,
     author_email=metadata.__email__,
     packages=['objectifier'],
-    package_data={'': ['LICENSE']},
+    package_data={'': ['LICENSE', 'README.rst']}
 )
 
