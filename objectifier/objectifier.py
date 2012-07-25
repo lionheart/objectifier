@@ -3,14 +3,11 @@ import json
 class Objectifier(object):
     def __init__(self, response_data):
         try:
-            self.response_data = dict(response_data)
+            self.response_data = json.loads(response_data)
         except ValueError:
-            try:
-                self.response_data = json.loads(response_data)
-            except ValueError:
-                self.response_data = response_data
-            except TypeError:
-                self.response_data = response_data
+            self.response_data = response_data
+        except TypeError:
+            self.response_data = response_data
 
     @staticmethod
     def objectify_if_needed(response_data):
