@@ -22,6 +22,7 @@ setup(
     author=metadata.__author__,
     author_email=metadata.__email__,
     packages=['objectifier'],
+    test_suite='objectifier.tests',
     package_data={'': ['LICENSE', 'README.rst']}
 )
 
