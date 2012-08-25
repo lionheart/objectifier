@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from objectifier import Objectifier
+from objectifier import Objectifier, arrayify_xml
 
 
 class BasicTests(TestCase):
@@ -97,16 +97,12 @@ class BasicTests(TestCase):
             {
                 "People": {
                     "Person": [
-                        {
-                            "Name": "Marc"
-                        },
-                        {
-                            "Name": "Zach"
-                        }
+                        { "Name": "Marc" },
+                        { "Name": "Zach" }
                     ]
                 }
             }
-        """.strip()
+            """.strip()
         obj = Objectifier(people_json)
         self.assertEqual(repr(obj), '<Objectifier#dict People=dict>')
         self.assertEqual(obj.People.Person[0].Name, 'Marc')
@@ -116,18 +112,69 @@ class BasicTests(TestCase):
             {
                 "People": {
                     "Person": [
-                        {
-                            "Name": "Marc",
-                            "Age": 37
-                        },
-                        {
-                            "Name": "Zach",
-                            "Age": 3
-                        }
+                        { "Name": "Marc", "Age": 37 },
+                        { "Name": "Zach", "Age": 3 }
                     ]
                 }
             }
-        """.strip()
+            """.strip()
         obj = Objectifier(people_json)
         self.assertEqual(repr(obj), '<Objectifier#dict People=dict>')
         self.assertEqual(obj.People.Person[0].Name, 'Marc')
+
+
+class XMLTests(TestCase):
+
+    def get_books_xml(self):
+        return """
+            <?xml version="1.0" encoding="utf-8"?>
+            <Books>
+                <Items>
+                    <Item><ISBN>0321558235</ISBN></Item>
+                    <Item><ISBN>9780321558237</ISBN></Item>
+                </Items>
+            </Books>
+            """.strip()
+
+    def get_people_xml(self):
+        return """
+            <?xml version="1.0" encoding="utf-8"?>
+            <People>
+                <Person>
+                    <Name>Marc</Name>
+                    <Age>37</Age>
+                </Person>
+                <Person>
+                    <Name>Zach</Name>
+                    <Age>3</Age>
+                </Person>
+            </People>
+            """.strip()
+
+    def get_chegg_xml(self):
+        return """
+            <CheggProductPricing>
+                <ResponseHeader/>
+                <Items>
+                    <Item><BiblioId>15536985</BiblioId></Item>
+                    <Item><BiblioId>16432444</BiblioId></Item>
+                </Items>
+            </CheggProductPricing>
+            """.strip()
+
+    def test_objectify_books_xml(self):
+        obj = Objectifier(self.get_books_xml())
+        self.assertEqual(repr(obj), '<Objectifier#dict Books=dict>')
+        self.assertEqual(obj.Books.Items.Item[0].ISBN, '0321558235')
+        self.assertEqual(obj.Books.Items.Item[1].ISBN, '9780321558237')
+
+    def test_objectify_people_xml(self):
+        obj = Objectifier(self.get_people_xml())
+        self.assertEqual(repr(obj), '<Objectifier#dict People=dict>')
+        self.assertEqual(obj.People.Person[0].Name, 'Marc')
+
+    def test_objectify_chegg_xml(self):
+        obj = Objectifier(self.get_chegg_xml())
+        self.assertEqual(repr(obj), '<Objectifier#dict CheggProductPricing=dict>')
+        self.assertEqual(obj.CheggProductPricing.Items.Item[0].BiblioId, '15536985')
+        self.assertEqual(obj.CheggProductPricing.Items.Item[1].BiblioId, '16432444')

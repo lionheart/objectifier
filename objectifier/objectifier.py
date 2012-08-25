@@ -1,4 +1,46 @@
 import json
+try:
+    import xml.etree.cElementTree as ElementTree
+except ImportError:
+    import xml.etree.ElementTree as ElementTree
+
+
+def etree_list_items_all_have_same_tag(l):
+    last_tag = None
+
+    for x in l:
+        if last_tag is not None and last_tag != x.tag:
+            return False
+
+        last_tag = x.tag
+
+    return True
+
+
+def arrayify_etree(e):
+    children = e.getchildren()
+
+    if len(children) == 0:
+        return {e.tag: e.text}
+    elif len(children) > 1 and etree_list_items_all_have_same_tag(children):
+        l = []
+
+        for x in children:
+            l.append(arrayify_etree(x)[x.tag])
+
+        return {e.tag: {children[0].tag: l}}
+    else:
+        d = {}
+
+        for x in children:
+            d.update(arrayify_etree(x))
+
+        return {e.tag: d}
+
+
+def arrayify_xml(xml_str):
+    return arrayify_etree(ElementTree.fromstring(xml_str))
+
 
 class Objectifier(object):
     def __init__(self, response_data):
@@ -11,7 +53,10 @@ class Objectifier(object):
             try:
                 self.response_data = json.loads(response_data)
             except ValueError:
-                self.response_data = response_data
+                try:
+                    self.response_data = arrayify_xml(response_data)
+                except ElementTree.ParseError:
+                    self.response_data = response_data
             except TypeError:
                 self.response_data = response_data
 
