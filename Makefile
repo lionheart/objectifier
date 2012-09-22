@@ -28,7 +28,6 @@ documentation:
 	git commit -m "doc update"
 
 push:
-	git push github master
 	git push origin master
 
 
