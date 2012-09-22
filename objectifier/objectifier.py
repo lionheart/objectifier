@@ -3,9 +3,9 @@ import json
 class Objectifier(object):
     def __init__(self, response_data):
         if type(response_data) == list:
-            try:
+            if self.is_list_of_2_element_tuples(response_data):
                 self.response_data = dict(response_data)
-            except:
+            else:
                 self.response_data = response_data
         else:
             try:
@@ -14,6 +14,16 @@ class Objectifier(object):
                 self.response_data = response_data
             except TypeError:
                 self.response_data = response_data
+
+    def is_list_of_2_element_tuples(self, input):
+        if not isinstance(input, list):
+            return False
+
+        for item in input:
+            if not isinstance(item, tuple) or len(item) != 2:
+                return False
+
+        return True
 
     @staticmethod
     def objectify_if_needed(response_data):
