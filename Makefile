@@ -16,7 +16,6 @@ version: pyc
 	git add docs/conf.py
 	git commit -m "bump version to ${MAJ}.${MIN}"
 	python setup.py sdist upload --sign
-	s3cmd put dist/objectifier-${MAJ}.${MIN}.tar.gz s3://packages.elmcitylabs.com/ -P
 
 documentation:
 	cp docs/index.rst README.rst
