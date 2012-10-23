@@ -9,7 +9,7 @@ try:
 except ImportError:
     from distutils.core import setup
 
-with open("README.rst") as file:
+with open(os.path.join(os.path.dirname(__file__), "README.rst")) as file:
     long_description = file.read()
 
 setup(
@@ -23,6 +23,7 @@ setup(
     author_email=metadata.__email__,
     packages=['objectifier'],
     test_suite='objectifier.tests',
+    use_2to3=True,
     package_data={'': ['LICENSE', 'README.rst']}
 )
 
