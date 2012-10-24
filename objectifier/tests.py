@@ -36,13 +36,17 @@ class BasicTests(TestCase):
 
     def test_dict_1(self):
         obj = Objectifier({'a': 1, 'b': 2})
-        self.assertEqual(repr(obj), '<Objectifier#dict a=int b=int>')
+        self.assertTrue('<Objectifier#dict' in repr(obj))
+        self.assertTrue('a=int' in repr(obj))
+        self.assertTrue('b=int' in repr(obj))
         self.assertEqual(obj.a, 1)
         self.assertEqual(obj.b, 2)
 
     def test_dict_2(self):
         obj = Objectifier({'a': 1, 'b': 'c'})
-        self.assertEqual(repr(obj), '<Objectifier#dict a=int b=str>')
+        self.assertTrue('<Objectifier#dict' in repr(obj))
+        self.assertTrue('a=int' in repr(obj))
+        self.assertTrue('b=str' in repr(obj))
         self.assertEqual(obj.a, 1)
         self.assertEqual(obj.b, 'c')
 
@@ -54,7 +58,9 @@ class BasicTests(TestCase):
 
     def test_dict_3(self):
         obj = Objectifier({'a': 1, 'b': {'c': 2, 'd': {'e': [3, {'f': 4}]}}})
-        self.assertEqual(repr(obj), '<Objectifier#dict a=int b=dict>')
+        self.assertTrue('<Objectifier#dict' in repr(obj))
+        self.assertTrue('a=int' in repr(obj))
+        self.assertTrue('b=dict' in repr(obj))
         self.assertEqual(obj.a, 1)
         self.assertEqual(obj.b.c, 2)
         self.assertEqual(obj.b.d.e[0], 3)
@@ -88,7 +94,9 @@ class BasicTests(TestCase):
 
     def test_list_of_tuples(self):
         obj = Objectifier([('a', 1), ('b', 2)])
-        self.assertEqual(repr(obj), '<Objectifier#dict a=int b=int>')
+        self.assertTrue('<Objectifier#dict' in repr(obj))
+        self.assertTrue('a=int' in repr(obj))
+        self.assertTrue('b=int' in repr(obj))
         self.assertEqual(obj.a, 1)
         self.assertEqual(obj.b, 2)
 
