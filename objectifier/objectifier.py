@@ -4,6 +4,11 @@ try:
 except ImportError:
     import xml.etree.ElementTree as ElementTree
 
+# ElementTree in 2.7 raises ElementTree.ParseError; 2.6 raises SyntaxError
+try:
+    ElementTree.ParseError
+except AttributeError:
+    ElementTree.ParseError = SyntaxError
 
 def etree_list_items_all_have_same_tag(l):
     last_tag = None
@@ -87,11 +92,11 @@ class Objectifier(object):
 
     def __repr__(self):
         try:
-            return "<Objectifier#dict {}>".format(" ".join(["%s=%s" % (k, type(v).__name__)
+            return "<Objectifier#dict {0}>".format(" ".join(["%s=%s" % (k, type(v).__name__)
                 for k, v in self.response_data.iteritems()]))
         except AttributeError:
             try:
-                return "<Objectifier#list elements:{}>".format(len(self.response_data))
+                return "<Objectifier#list elements:{0}>".format(len(self.response_data))
             except TypeError:
                 return self.response_data
 
