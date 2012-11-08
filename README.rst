@@ -126,7 +126,6 @@ Contributing, feedback, and questions
 -------------------------------------
 
 * Github: https://github.com/aurorasoftware/objectifier
-* Bitbucket: http://bitbucket.com/aurorasoftware/objectifier
 * Email: opensource@aurora.io
 * Twitter: `@aurora_software <http://twitter.com/aurora_software>`_
 
