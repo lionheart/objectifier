@@ -8,7 +8,7 @@ Objectifier is a tool that makes traversing dictionaries, lists, and other
 Python objects a lot easier.
 
 If you have an bug to report or a feature request, add it to our `issue tracker
-<https://github.com/elmcitylabs/objectifier/issues>`_.
+<https://github.com/aurorasoftware/objectifier/issues>`_.
 
 .. _installation:
 
@@ -120,15 +120,13 @@ all the attributes in the object. ::
     ...geo                        ...in_reply_to_user_id        ...retweeted
 
 There are probably a lot of other things Objectifier could do too, so if you
-have an idea, fork the code on `Github
-<https://github.com/elmcitylabs/objectifier>`_ or `bitbucket
-<https://bitbucket.org/elmcitylabs/objectifier>`_ and send us a pull request!
+have an idea, fork the `code <https://github.com/aurorasoftware/objectifier>`_.
 
 Contributing, feedback, and questions
 -------------------------------------
 
-* Github: https://github.com/elmcitylabs/objectifier
-* Bitbucket: http://bitbucket.com/elmcitylabs/objectifier
-* Email: opensource@elmcitylabs.com.
-* Twitter: `@elmcitylabs <http://twitter.com/elmcitylabs>`_
+* Github: https://github.com/aurorasoftware/objectifier
+* Bitbucket: http://bitbucket.com/aurorasoftware/objectifier
+* Email: opensource@aurora.io
+* Twitter: `@aurora_software <http://twitter.com/aurora_software>`_
 
