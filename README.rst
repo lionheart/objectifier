@@ -2,6 +2,7 @@ Objectifier
 ===========
 
 .. image:: https://travis-ci.org/aurorasoftware/objectifier.png
+  :target: https://travis-ci.org/aurorasoftware/objectifier
 
 Objectifier is a tool that makes traversing dictionaries, lists, and other
 Python objects a lot easier.
