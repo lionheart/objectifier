@@ -1,7 +1,7 @@
 Objectifier
 ===========
 
-.. image:: https://travis-ci.org/aurorasoftware/objectifier.png
+.. image:: https://secure.travis-ci.org/aurorasoftware/objectifier.png?branch=master
   :target: https://travis-ci.org/aurorasoftware/objectifier
 
 Objectifier is a tool that makes traversing dictionaries, lists, and other
