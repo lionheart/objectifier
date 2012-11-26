@@ -53,9 +53,12 @@ class Objectifier(object):
                 self.response_data = response_data
         else:
             try:
+                # Assume the data is JSON
                 self.response_data = json.loads(response_data)
             except ValueError:
                 try:
+                    # A JSON object couldn't be found, so try to parse the data
+                    # as XML
                     self.response_data = arrayify_xml(response_data)
                 except ElementTree.ParseError:
                     self.response_data = response_data
