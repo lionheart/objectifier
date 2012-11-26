@@ -1,4 +1,5 @@
 import json
+
 try:
     import xml.etree.cElementTree as ElementTree
 except ImportError:
@@ -22,25 +23,21 @@ def etree_list_items_all_have_same_tag(l):
     return True
 
 
-def arrayify_etree(e):
-    children = e.getchildren()
+def arrayify_etree(tree):
+    children = tree.getchildren()
 
     if len(children) == 0:
-        return {e.tag: e.text}
+        return {tree.tag: tree.text}
     elif len(children) > 1 and etree_list_items_all_have_same_tag(children):
-        l = []
-
-        for x in children:
-            l.append(arrayify_etree(x)[x.tag])
-
-        return {e.tag: {children[0].tag: l}}
+        l = [arrayify_etree(child)[child.tag] for child in children]
+        return {tree.tag: {children[0].tag: l}}
     else:
         d = {}
 
-        for x in children:
-            d.update(arrayify_etree(x))
+        for child in children:
+            d.update(arrayify_etree(child))
 
-        return {e.tag: d}
+        return {tree.tag: d}
 
 
 def arrayify_xml(xml_str):
