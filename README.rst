@@ -120,13 +120,13 @@ all the attributes in the object. ::
     ...geo                        ...in_reply_to_user_id        ...retweeted
 
 There are probably a lot of other things Objectifier could do too, so if you
-have an idea, fork the `code <https://github.com/aurorasoftware/objectifier>`_.
+have an idea, fork the `code <https://github.com/lionheart/objectifier>`_.
 
 Contributing, feedback, and questions
 -------------------------------------
 
-* Github: https://github.com/aurorasoftware/objectifier
-* Email: opensource@aurora.io
-* Twitter: `@aurora_software <http://twitter.com/aurora_software>`_
+* Github: https://github.com/lionheart/objectifier
+* Email: hi@lionheartsw.com
+* Twitter: `@lionheartsw <https://twitter.com/lionheartsw>`_
 
 
